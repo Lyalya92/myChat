@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="200.0" prefWidth="350.0"
+            style="-fx-background-color: #f4f8a0;"
+            xmlns="http://javafx.com/javafx/11.0.2"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="my_chat.chat_client.controllers.AuthController">
+
+    <Label layoutX="119.0" layoutY="21.0"
+           prefHeight="25.0" prefWidth="127.0"
+           text="Sign in to Chat" textFill="#11ab21">
+        <font>
+            <Font name="Book Antiqua Bold" size="18.0" />
+        </font>
+    </Label>
+
+    <TextField fx:id="loginField"
+               layoutX="108.0" layoutY="54.0"
+               promptText="Login" />
+
+    <PasswordField fx:id="passwordField"
+                   layoutX="108.0" layoutY="88.0"
+                   promptText="Password" />
+
+    <Button fx:id="btnSignIn"
+            layoutX="107.0" layoutY="123.0"
+            onAction="#sendAuth"
+            prefHeight="26.0" prefWidth="149.0"
+            text="Sign In" textAlignment="CENTER" textFill="#11ab21">
+        <font>
+            <Font name="Bookman Old Style Bold" size="14.0" />
+        </font>
+    </Button>
+
+
+    <Button fx:id="btnCreateAnAccount"
+            onAction="#createAnAccount"
+            layoutX="107.0" layoutY="154.0"
+            prefHeight="25.0" prefWidth="149.0"
+            text="Create an account">
+        <font>
+            <Font name="Bookman Old Style Italic" size="12.0" />
+        </font>
+    </Button>
+
+</AnchorPane>

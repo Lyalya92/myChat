@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="450.0" prefWidth="750.0"
+            style="-fx-background-color: #f4f8a0;"
+            xmlns="http://javafx.com/javafx/11.0.2"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="my_chat.chat_client.controllers.MainController">
+
+    <VBox>
+        <HBox prefHeight="25.0" prefWidth="750.0">
+            <MenuBar>
+                <Menu text="Account">
+                    <MenuItem onAction="#mockAction" text="Sign Out" />
+                    <MenuItem onAction="#mockAction" text="Settings" />
+                </Menu>
+                <Menu text="Help">
+                    <MenuItem onAction="#mockAction" text="Help" />
+                </Menu>
+                <Menu text="About">
+                    <MenuItem onAction="#mockAction" text="About" />
+                </Menu>
+            </MenuBar>
+        </HBox>
+
+        <HBox VBox.vgrow="ALWAYS">
+            <TextArea fx:id="mainChatArea"
+                      editable="false"
+                      prefHeight="390.0" prefWidth="475.0"
+                      HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                <HBox.margin>
+                    <Insets left="5.0" right="5.0" />
+                </HBox.margin>
+            </TextArea>
+            <ListView fx:id="contactList" minWidth="90.0">
+                <HBox.margin>
+                    <Insets left="5.0" right="5.0" />
+                </HBox.margin>
+            </ListView>
+        </HBox>
+
+        <HBox VBox.vgrow="ALWAYS">
+            <TextField fx:id="inputField"
+                       onAction="#sendMessage"
+                       prefHeight="24.0" prefWidth="650.0"
+                       HBox.hgrow="ALWAYS">
+                <HBox.margin>
+                    <Insets left="5.0" right="5.0" />
+                </HBox.margin>
+                <font>
+                    <Font name="Bookman Old Style" size="12.0" />
+                </font>
+            </TextField>
+
+            <Button fx:id="btnSend"
+                    minWidth="100.0"
+                    onAction="#sendMessage"
+                    prefHeight="24.0" prefWidth="100.0"
+                    text="SEND"
+                    textFill="#11ab21" underline="true">
+                <font>
+                    <Font name="Bookman Old Style" size="12.0" />
+                </font>
+            </Button>
+        </HBox>
+
+    </VBox>
+</AnchorPane>
