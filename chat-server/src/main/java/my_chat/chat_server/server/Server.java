@@ -28,6 +28,7 @@ public class Server {
         try {
             serverSocket = new ServerSocket(PORT);  //Пробуем запустить сервер
             System.out.println("Server started");
+            authService.start();
 
             while (true) {
                 socket = serverSocket.accept();  // ждем подключения
