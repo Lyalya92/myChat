@@ -37,7 +37,6 @@ public class NetworkService {
             }
         });
 
-        thread.setDaemon(true);
         thread.start();
     }
 

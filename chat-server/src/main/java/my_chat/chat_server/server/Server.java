@@ -70,7 +70,6 @@ public class Server {
 
     // Добавление контакта в список
     public synchronized void addAuthorizedClientToList(ClientHandler client){
-        System.out.println("Добавляем нового клиента в список");
         clients.add(client);
         sendOnlineClients();
     }
@@ -112,4 +111,5 @@ public class Server {
     public AuthService getAuthService() {
         return authService;
     }
+
 }

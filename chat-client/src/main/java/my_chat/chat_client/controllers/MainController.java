@@ -54,7 +54,6 @@ public class MainController implements Initializable, MessageProcessor {
             messageType = "/private";
             outMessage = messageType + REGEX + recipient + REGEX + message;
         }
-        System.out.println(outMessage);
         AuthController authController = (AuthController) ControllerHandler.controllers.get("authWindow");
         authController.networkService.sendMessage(outMessage);
         inputField.clear();
@@ -71,7 +70,6 @@ public class MainController implements Initializable, MessageProcessor {
 
     private void parseIncomingMessage(String message) {
         var splitMessage = message.split(REGEX);
-        System.out.println(splitMessage[0]);
         switch (splitMessage[0]) {
             case "/auth_ok" :
                 this.nickname = splitMessage[1];
@@ -120,7 +118,6 @@ public class MainController implements Initializable, MessageProcessor {
             contacts.add(splitMessage[i]);
         }
         MainController mainController = (MainController) ControllerHandler.controllers.get("mainChatWindow");
-        mainController.mainChatArea.appendText("Hallo" + System.lineSeparator());
         mainController.contactList.setItems(FXCollections.observableList(contacts));
         mainController.contactList.getSelectionModel().selectFirst();
 
