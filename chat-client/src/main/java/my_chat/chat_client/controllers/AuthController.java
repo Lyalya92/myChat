@@ -46,7 +46,6 @@ public class AuthController implements Initializable, MessageProcessor {
         }
 
         var message = "/auth" + REGEX + login + REGEX + password;
-        System.out.println(message);
         if (!networkService.isConnected()) {
             try {
                 networkService.connect();
