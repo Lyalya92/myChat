@@ -56,6 +56,11 @@ public class ClientHandler {
             case "/broadcast":
                 server.sendMessageToAll(this.user, splitMessage[2]);
                 break;
+            case "/change_nick":
+                if (server.getAuthService().authorizeUserByLoginAndPassword(splitMessage[1], splitMessage[2])!=null) {
+                    server.getAuthService().changeNickname(splitMessage[1], splitMessage[3]);
+                }
+                break;
         }
 
     }

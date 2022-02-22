@@ -32,8 +32,8 @@ public class DatabaseAuthService implements AuthService {
     }
 
     @Override
-    public String changeNickname(String newNickname) {
-        return null;
+    public String changeNickname(String login, String newNickname) {
+        return databaseService.changeNickname(login, newNickname);
     }
 
     @Override

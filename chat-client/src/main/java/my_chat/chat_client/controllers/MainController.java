@@ -22,7 +22,6 @@ public class MainController implements Initializable, MessageProcessor {
     public static final String REGEX = "%!%";
 
     private  String nickname;
-//    MainController mainController = (MainController) ControllerHandler.controllers.get("mainChatWindow");
 
     @FXML
     public TextArea mainChatArea;
@@ -126,5 +125,16 @@ public class MainController implements Initializable, MessageProcessor {
 
     private void addMessageToChatArea(String message) {
         mainChatArea.appendText(message + System.lineSeparator());
+    }
+
+    public void openSettingsWindow(ActionEvent actionEvent) throws IOException {
+        FXMLLoader settingsLoader = new FXMLLoader();
+        settingsLoader.setLocation(getClass().getResource("/settingsWindow.fxml"));
+        Parent parent = settingsLoader.load();
+        ControllerHandler.controllers.put("settingsWindow", settingsLoader.getController());
+        Stage settingsStage = new Stage();
+        settingsStage.setScene(new Scene(parent));
+        settingsStage.setTitle("Settings");
+        settingsStage.showAndWait();
     }
 }

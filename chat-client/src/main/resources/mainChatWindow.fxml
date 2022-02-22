@@ -16,7 +16,7 @@
             <MenuBar>
                 <Menu text="Account">
                     <MenuItem onAction="#mockAction" text="Sign Out" />
-                    <MenuItem onAction="#mockAction" text="Settings" />
+                    <MenuItem onAction="#openSettingsWindow" text="Settings" />
                 </Menu>
                 <Menu text="Help">
                     <MenuItem onAction="#mockAction" text="Help" />
