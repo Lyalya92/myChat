@@ -1,14 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="my_chat.chat_client.controllers.SettingsController"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane prefHeight="200.0" prefWidth="350.0"
+            style="-fx-background-color: #f4f8a0;"
+            xmlns="http://javafx.com/javafx/11.0.2"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="my_chat.chat_client.controllers.SettingsController">
+
+    <VBox fx:id="settingsPanel"
+          layoutX="99.0" layoutY="44.0" prefHeight="96.0" prefWidth="152.0"
+          visible="true">
+
+    <Label layoutX="136.0" layoutY="21.0"
+           prefHeight="25.0" prefWidth="78.0"
+           text="Settings:" textFill="#11ab21">
+        <font>
+            <Font name="Book Antiqua Bold" size="18.0" />
+        </font>
+    </Label>
+
+    <Button fx:id="btnChangeNickname"
+            layoutX="105.0" layoutY="74.0" mnemonicParsing="false"
+            onAction="#openChangeNicknamePanel"
+            text="Change nickname" textAlignment="CENTER" textFill="#11ab21">
+        <font>
+            <Font name="Bookman Old Style Italic" size="14.0" />
+        </font>
+    </Button>
+
+    <Button fx:id="btnChangePassword"
+            layoutX="105.0" layoutY="114.0" mnemonicParsing="false"
+            text="Change password" textAlignment="CENTER" textFill="#11ab21">
+        <font>
+            <Font name="Bookman Old Style Italic" size="14.0" />
+        </font>
+    </Button>
+</VBox>
+
+    <VBox fx:id="changeNickPanel" layoutX="68.0" layoutY="22.0"
+          prefHeight="171.0" prefWidth="214.0"
+          visible="false">
+      <children>
+
+         <Label text="Login:" textFill="#11ab21">
+            <font>
+                <Font name="Bookman Old Style" size="14.0" />
+            </font>
+         </Label>
+
+         <TextField fx:id="loginField" prefHeight="25.0" prefWidth="263.0" />
+
+         <Label text="Password:" textFill="#11ab21">
+            <font>
+                <Font name="Bookman Old Style" size="14.0" />
+            </font>
+         </Label>
+
+         <PasswordField fx:id="passwordField" />
+
+         <Label text="New nickname:" textFill="#11ab21">
+            <font>
+                <Font name="Bookman Old Style" size="14.0" />
+            </font></Label>
+
+         <TextField fx:id="newNicknameField" />
+
+         <HBox prefHeight="29.0" prefWidth="191.0">
+            <children>
+
+               <Button mnemonicParsing="false" onAction="#changeNickname" text="Change">
+                  <font>
+                      <Font name="Bookman Old Style Italic" size="14.0" />
+                  </font>
+               </Button>
+
+               <Button mnemonicParsing="false" onAction="#backToSettings" text="Back">
+                  <font>
+                      <Font name="Bookman Old Style Italic" size="14.0" />
+                  </font>
+               </Button>
+
+            </children>
+         </HBox>
+      </children></VBox>
 
 </AnchorPane>

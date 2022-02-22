@@ -9,7 +9,7 @@ public interface AuthService {
     String authorizeUserByLoginAndPassword (String login, String password);
     User createNewUser(String login, String password, String nickName);
     void deleteUser(String login, String password);
-    String changeNickname(String newNickname);
+    String changeNickname(String login, String newNickname);
     void changePassword(String login, String oldPass, String newPass);
     void resetPassword(String login, String newPass, String secretWord);
 }

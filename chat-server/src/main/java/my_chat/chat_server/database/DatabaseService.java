@@ -22,10 +22,12 @@ public class DatabaseService {
             "('login3', 'qwert', 'nick3');";
 
     public static final String GET_NICKNAME =
-            "SELECT * FROM chat_clients " +
+            "SELECT nickname FROM chat_clients " +
             "WHERE login = ? AND password = ?";
 
-    public static final String CHANGE_NICKNAME = "";
+    public static final String CHANGE_NICKNAME =
+            "UPDATE chat_clients SET nickname = ? WHERE login = ?;";
+
 
     private  static Connection connection;
     private static DatabaseService instance;
@@ -90,5 +92,18 @@ public class DatabaseService {
             e.printStackTrace();
         }
         throw new UserNotFoundException ("User not found");
+    }
+
+    public String changeNickname(String login, String newNickname) {
+        System.out.println("Login: " + login + " new Nick: " + newNickname);
+        System.out.println("Мы готовы сменить ник!");
+        try(var ps = connection.prepareStatement(CHANGE_NICKNAME)){
+            ps.setString(1, newNickname);
+            ps.setString(2, login);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        throw new UserNotFoundException ("User not found");
+
     }
 }

@@ -52,7 +52,7 @@ public class InMemoryAuthService implements AuthService{
     }
 
     @Override
-    public String changeNickname(String newNickname) {
+    public String changeNickname(String oldNickname, String newNickname) {
         return null;
     }
 
