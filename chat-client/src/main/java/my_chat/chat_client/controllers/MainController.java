@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import my_chat.chat_client.HistoryLogging;
 import my_chat.chat_client.network.MessageProcessor;
 import my_chat.chat_client.network.NetworkService;
 
@@ -17,11 +18,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.Stack;
 
 public class MainController implements Initializable, MessageProcessor {
     public static final String REGEX = "%!%";
 
     private  String nickname;
+    private HistoryLogging historyLogging;
 
     @FXML
     public TextArea mainChatArea;
@@ -72,6 +75,7 @@ public class MainController implements Initializable, MessageProcessor {
         switch (splitMessage[0]) {
             case "/auth_ok" :
                 this.nickname = splitMessage[1];
+                this.historyLogging = new HistoryLogging(this.nickname);
                 closeAuthWindow();
                 showMainChatWindow(splitMessage[1]);
                 break;
@@ -88,6 +92,14 @@ public class MainController implements Initializable, MessageProcessor {
         }
     }
 
+    private void showHistory() {
+        Stack <String> history = historyLogging.readMessagesFromHistory();
+        String message;
+        while (!history.empty()) {
+           message = history.pop();
+            mainChatArea.appendText(message + System.lineSeparator());
+            }
+        }
 
     private void showError (String message){
         var alert = new Alert(Alert.AlertType.ERROR,
@@ -101,7 +113,8 @@ public class MainController implements Initializable, MessageProcessor {
         Stage stage = (Stage) mainController.btnSend.getScene().getWindow();
         var title = stage.getTitle() + " [" + nickname + "]";
         stage.setTitle(title);
-        stage.showAndWait();
+        stage.show();
+        showHistory();
     }
 
     private void closeAuthWindow() {
@@ -125,6 +138,8 @@ public class MainController implements Initializable, MessageProcessor {
 
     private void addMessageToChatArea(String message) {
         mainChatArea.appendText(message + System.lineSeparator());
+        var msg = message + "\n";
+        this.historyLogging.writeMessageToHistory(msg);
     }
 
     public void openSettingsWindow(ActionEvent actionEvent) throws IOException {
