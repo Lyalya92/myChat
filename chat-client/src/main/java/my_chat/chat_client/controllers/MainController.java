@@ -86,10 +86,19 @@ public class MainController implements Initializable, MessageProcessor {
             case "/list" :
                 addContactList(splitMessage);
                 break;
+            case "/disconnect" :
+                disconnectFromServer();
+                break;
             default:
                 addMessageToChatArea(splitMessage[0]);
                 break;
         }
+    }
+
+    private void disconnectFromServer() {
+
+        AuthController authController = (AuthController) ControllerHandler.controllers.get("authWindow");
+        authController.networkService.sendMessage("/disconnect");
     }
 
     private void showHistory() {
