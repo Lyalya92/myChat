@@ -32,7 +32,7 @@ public class ClientHandler {
 
     public void handle() {
         // создание нового потока для обработки
-        handlerTread = new Thread(()-> {
+        server.getExecutorService().execute(()-> {
             authorize();
             while (!Thread.currentThread().isInterrupted() && !socket.isClosed()) {
                 try {
@@ -43,7 +43,6 @@ public class ClientHandler {
                 }
             }
         });
-        handlerTread.start();
     }
 
     // Обработка сообщения:
