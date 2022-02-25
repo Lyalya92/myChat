@@ -1,11 +1,14 @@
 package my_chat.chat_client;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import my_chat.chat_client.controllers.ControllerHandler;
+import my_chat.chat_client.controllers.MainController;
 
 public class ChatApplication extends Application {
     public static void main(String[] args) {
@@ -27,11 +30,17 @@ public class ChatApplication extends Application {
         FXMLLoader mainChatLoader = new FXMLLoader();
         mainChatLoader.setLocation(getClass().getResource("/mainChatWindow.fxml"));
         Parent parent = mainChatLoader.load();
-        ControllerHandler.controllers.put("mainChatWindow", mainChatLoader.getController());
+        MainController mainController = mainChatLoader.getController();
+        ControllerHandler.controllers.put("mainChatWindow", mainController);
         Stage mainChatStage = new Stage();
         mainChatStage.setScene(new Scene(parent));
         mainChatStage.setTitle("MyChat");
-
+        mainChatStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent windowEvent) {
+                mainController.processMessage("/disconnect");
+            }
+        });
 
 
     }

@@ -75,7 +75,7 @@ public class Server {
         sendOnlineClients();
     }
     // Удаление контакта из списка
-    public synchronized void removeAuthorizedClientToList(ClientHandler client){
+    public synchronized void removeAuthorizedClientFromList(ClientHandler client){
         clients.remove(client);
         sendOnlineClients();
     }

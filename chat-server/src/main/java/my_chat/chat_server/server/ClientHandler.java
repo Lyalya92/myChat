@@ -61,6 +61,9 @@ public class ClientHandler {
                     server.getAuthService().changeNickname(splitMessage[1], splitMessage[3]);
                 }
                 break;
+            case "/disconnect":
+                clientDisconnect();
+                break;
         }
 
     }
@@ -132,7 +135,9 @@ public class ClientHandler {
 
     // Клиент отключается
     public void clientDisconnect() {
-        server.removeAuthorizedClientToList(this);
+        server.removeAuthorizedClientFromList(this);
+        handlerTread.interrupt();
+        System.out.println("Client disconnected");
     }
 
 
