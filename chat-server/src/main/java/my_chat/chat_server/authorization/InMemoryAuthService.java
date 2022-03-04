@@ -2,6 +2,7 @@ package my_chat.chat_server.authorization;
 
 import my_chat.chat_server.entity.User;
 import my_chat.chat_server.error.WrongCredentialsException;
+import my_chat.chat_server.server.Server;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,12 +24,12 @@ public class InMemoryAuthService implements AuthService{
 
     @Override
     public void start() {
-        System.out.println("Auth service started");
+        Server.logger.info("Auth service started");
     }
 
     @Override
     public void stop() {
-        System.out.println("Auth service stopped");
+        Server.logger.info("Auth service stoped");
     }
 
     @Override
@@ -38,6 +39,7 @@ public class InMemoryAuthService implements AuthService{
                 return user.getNickname();
             }
         }
+        Server.logger.error("Wrong username or password");
         throw new WrongCredentialsException("Wrong username or password");
     }
 

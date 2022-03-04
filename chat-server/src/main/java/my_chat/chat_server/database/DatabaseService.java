@@ -1,6 +1,7 @@
 package my_chat.chat_server.database;
 
 import my_chat.chat_server.error.UserNotFoundException;
+import my_chat.chat_server.server.Server;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -53,14 +54,14 @@ public class DatabaseService {
 
     public static void connect() throws SQLException {
         connection = DriverManager.getConnection("jdbc:sqlite:javadb.db");
-        System.out.println("Connected to db");
+        Server.logger.info("Connected to db");
     }
 
     public static void disconnect() {
         try {
             if (connection != null) {
                 connection.close();
-                System.out.println("Disconnected from db");
+                Server.logger.info("Disconnected to db");
             }
         } catch (SQLException e) {
             e.printStackTrace();

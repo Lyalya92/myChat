@@ -1,6 +1,8 @@
 package my_chat.chat_server.server;
 
 import my_chat.chat_server.authorization.AuthService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -14,6 +16,7 @@ public class Server {
     public static final String REGEX = "%!%";
     private static final int PORT = 8189;
     private ExecutorService executorService;
+    public static final Logger logger = LogManager.getLogger(Server.class);
 
     private AuthService authService;
     private List<ClientHandler> clients;
@@ -31,12 +34,12 @@ public class Server {
     public void start() {
         try {
             serverSocket = new ServerSocket(PORT);  //Пробуем запустить сервер
-            System.out.println("Server started");
+            logger.info("Server started");
             authService.start();
 
             while (true) {
                 socket = serverSocket.accept();  // ждем подключения
-                System.out.println("Client connected");
+                logger.info("Client connected");
                 ClientHandler client = new ClientHandler(socket, this);  // создаем обработчик клиента
                 client.handle();
             }
@@ -82,6 +85,7 @@ public class Server {
     public synchronized void removeAuthorizedClientFromList(ClientHandler client){
         clients.remove(client);
         sendOnlineClients();
+        logger.info("Client disconnected");
     }
 
     // Отправка списка контактов
