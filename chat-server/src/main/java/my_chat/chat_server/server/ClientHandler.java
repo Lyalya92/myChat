@@ -79,7 +79,7 @@ public class ClientHandler {
                         sendMessage("/error" + Server.REGEX + "Authentication timeout!\nPlease, try again later!");
                         Thread.sleep(50);
                         socket.close();
-                        System.out.println("Connection with client closed");
+                        Server.logger.info("Connection with client closed");
                     }
                 } catch (InterruptedException | IOException e) {
                     e.printStackTrace();
@@ -98,12 +98,12 @@ public class ClientHandler {
                         nickname = server.getAuthService().authorizeUserByLoginAndPassword(parsedAuthMessage[1], parsedAuthMessage[2]);
                     } catch (WrongCredentialsException e) {
                         response = "/error" + Server.REGEX + e.getMessage();
-                        System.out.println("Wrong login or password");
+                        Server.logger.error("Wrong login or password");
                     }
 
                     if (server.isNicknameBusy(nickname)) {
                         response = "/error" + Server.REGEX + "this client already connected";
-                        System.out.println("Nickname busy " + nickname);
+                        Server.logger.error("Nickname busy " + nickname);
                     }
 
                     if (!response.equals("")) {
@@ -136,7 +136,7 @@ public class ClientHandler {
     public void clientDisconnect() {
         server.removeAuthorizedClientFromList(this);
         handlerTread.interrupt();
-        System.out.println("Client disconnected");
+        Server.logger.info("Client disconnected");
     }
 
 
